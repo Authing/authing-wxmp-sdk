@@ -199,6 +199,37 @@ if (ok) {
 }
 ```
 
+4. 开发者使用 token 维持登录状态
+
+用户信息中返回的 `token` 是登录凭证，开发者应当妥善保存，并且**后续的请求需要携带上此 token**：
+
+设置 Authorization 请求头为 "Bearer " + token, 例如：
+```
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVuaW9uaWQiOiJvaVBiRHVHNFM3bXNyS0hQS0RjOE1FQ1NlOGpNIiwiaWQiOiI1ZGMxMGJjYjZmOTRjMTc4YzZmZmZmYjkiLCJjbGllbnRJZCI6IjVkYTdlZGFiNTAzOTZjMWFkOTYyMzc4YSJ9LCJpYXQiOjE1NzI5NTY0MjUsImV4cCI6MTU3NDI1MjQyNX0.OTgl72WZS8So3R5DbWCJ7I_Bd0LaZa4S0TAVMg9qaYQ"
+```
+
+如果你使用的是 NodeJS 的 [axios](https://github.com/axios/axios)，可以这样写：
+```javascript
+
+axios.get(SOME_SERVICE_URL, {
+  headers: {
+    Authorization: `Bearer ${userinfo.token}`
+  }
+})
+```
+
+当终端用户携带此 Toekn 访问开发者的接口时，**开发者需要判断这个 Token 是否合法且处于登录状态**，Authing 为此提供了几个方法：[验证 JWT Token](https://learn.authing.cn/authing/advanced/authentication/verify-jwt-token)。Authing 返回的数据中包含了用户是否登录、登录情况下的用户 ID 等信息，之后开发者可以根据具体业务的需要对请求进行处理。
+
+5. 总结一下以上流程
+- 开发者引导用户跳转到微信授权页面：https://oauth.authing.cn/oauth/wechatmp/url:userPoolId。
+- 终端用户同意授权。
+- Authing 和微信根据 OAuth 协议完成用户信息交互。
+- Authing 将用户信息（包含 token）发送到开发者自定义的业务回调链接
+- 终端用户后续的请求将 token 携带上。
+- 开发者在后端调用 [Authing 提供的方法](https://learn.authing.cn/authing/advanced/authentication/verify-jwt-token) 检验 token 的合法性以及登录状态。
+- 根据 Authing 返回的登录状态和开发者自己的业务逻辑，对请求进行相应处理。
+
+
 ## 作者
 
 👤 **liaochangjiang**
