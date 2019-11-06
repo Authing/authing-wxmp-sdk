@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微信公众号网页授权 Demo</title>
+</head>
+
+<style>
+    body {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+
+    a {
+        color: #42b983;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    ol {
+        list-style: none;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    pre code {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 20px;
+    }
+</style>
+
+<body>
+
+    <div style="margin-bottom:22px">
+        <img data-v-1129b33e="" alt="Vue logo" height="80" src="https://cdn.authing.cn/authing-logo@2.png">
+        <h3>使用 Authing 五分钟接入微信网页授权登录</h2>
+            <h4>授权流程
+        </h3>
+        <table style="width:100%;font-size: 11px;">
+            <tr>
+                <th>步骤</th>
+                <th>详情</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>开发者引导用户跳转到 https://oauth.authing.cn/oauth/wechatmp/url/:userPoolId</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Authing 和微信服务器完成 OAuth 认证授权</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+                    Authing 携带用户信息返回给开发者在 Authing 后台配置的回调链接（在此例子中回调链接就是本页）
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <a id="btn-login">跳转到微信授权页面 </a>
+
+    <h4>获取到的用户信息</h3>
+        <pre style="text-align: left;">
+                <code id="userinfo"></code>
+        </pre>
+
+</body>
+<script>
+    const ua = window.navigator.userAgent.toLowerCase()
+    const isWechatUA = ua.match(/MicroMessenger/i) == 'micromessenger';
+    if (!isWechatUA) {
+        alert("请在微信客户端中打开！")
+    }
+
+    // display userInfo
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('code') == 200) {
+        alert("成功获取用户信息！")
+        const userinfo = JSON.parse(urlParams.get('data'));
+        const userinfoDiv = document.getElementById('userinfo');
+        userinfoDiv.innerHTML = JSON.stringify(userinfo, null, 4)
+    }
+
+    const loginBtn = document.getElementById('btn-login');
+    const userPoolId = "5da7edab50396c1ad962378a";
+    const host = "http://192.168.2.16:5556"
+    const authorizationUrl = `${host}/oauth/wechatmp/url/${userPoolId}`
+    loginBtn.onclick = function () {
+        window.location = authorizationUrl
+    }
+
+</script>
+
+</html>
