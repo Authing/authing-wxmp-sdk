@@ -24,7 +24,8 @@
   - 创建一个用户池
   - 在 **用户池** -> **基础配置** -> **基础设置** 页面获取用户池 ID。
 
-![](./images/userPoolId.png)
+<img src="./images/userPoolId.png" alt="drawing" width="50%"/>
+
 
 - 微信公众号：前往[微信公众平台](https://mp.weixin.qq.com/) 注册
   - 必须为服务号
@@ -36,17 +37,18 @@
 
 域名填写：`oauth.authing.cn`。
 
-![](./images/mpverify.png)
+<img src="./images/mpverify.png" alt="drawing" width="50%"/>
 
 出于安全验证考虑，微信服务器需要和 Authing 服务器做一次请求验证，开发者需要下载 txt 文件，并记录 **文件名** 和 **文本内容**。
 
 最后在 Authing 后台 **用户池** -> **第三方登录** -> **社会化登录** 开启微信网页授权登录：
 
-![](./images/wechatmp.png)
+<img src="./images/wechatmp.png" alt="drawing" width="50%"/>
 
 填写弹出的表单：
 
-![](./images/authing_form.png)
+<img src="./images/authing_form.png" alt="drawing" width="50%"/>
+
 - AppID：微信开发者ID
 - AppSecret：微信开发者密码
 - Redirect：你的业务回调链接
