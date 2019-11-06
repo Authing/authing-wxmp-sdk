@@ -24,7 +24,7 @@
   - 创建一个用户池
   - 在 **用户池** -> **基础配置** -> **基础设置** 页面获取用户池 ID。
 
-<img src="./images/userPoolId.png" alt="drawing" width="50%"/>
+<img src="./images/userPoolId.jpg" alt="drawing"/>
 
 
 - 微信公众号：前往[微信公众平台](https://mp.weixin.qq.com/) 注册
@@ -37,17 +37,17 @@
 
 域名填写：`oauth.authing.cn`。
 
-<img src="./images/mpverify.png" alt="drawing" width="50%"/>
+<img src="./images/mpverify.jpg" alt="drawing"/>
 
 出于安全验证考虑，微信服务器需要和 Authing 服务器做一次请求验证，开发者需要下载 txt 文件，并记录 **文件名** 和 **文本内容**。
 
 最后在 Authing 后台 **用户池** -> **第三方登录** -> **社会化登录** 开启微信网页授权登录：
 
-<img src="./images/wechatmp.png" alt="drawing" width="50%"/>
+<img src="./images/wechatmp.png" alt="drawing"/>
 
 填写弹出的表单：
 
-<img src="./images/authing_form.png" alt="drawing" width="50%"/>
+<img src="./images/authing_form.png" alt="drawing"/>
 
 - AppID：微信开发者ID
 - AppSecret：微信开发者密码
@@ -60,7 +60,11 @@
 
 使用 CDN：
 
-直接拷贝 `dist/authing-wxmp-sdk-browser.min.js` 的内容。
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/@authing/wxmp/dist/authing-wxmp-sdk.min.js"></script>
+```
+
+或者直接拷贝 `dist/authing-wxmp-sdk-browser.min.js` 的内容。
 
 接着就可以在浏览器环境下引用 `AuthingWxmp` 了。
 
@@ -137,11 +141,11 @@ loginBtn.onclick = function () {
 > 从当前页面 url 的 search 部分获取用户信息
 
 参数：
-- search：浏览器当前页面链接的 search 部分，可通过 `indow.location.search` 获取。必填。
+- search：浏览器页面链接的 search 部分，可选，默认为 `window.location.search`。
 
 示例：
 ```javascript
-const { ok, userinfo, message } = authingWx.getUserInfo(window.location.search)
+const { ok, userinfo, message } = authingWx.getUserInfo()
 if (ok) {
     // do with userinfo
     console.log(userinfo)
@@ -151,7 +155,7 @@ if (ok) {
 }
 ```
 
-> 完整的 DEMO 可从 `examples/` 目录下获取。
+> 完整的 DEMO 可从 [examples](./examples/) 目录下获取。
 
 ## 授权流程
 

@@ -25,10 +25,11 @@ AuthingWxmp.prototype.checkWechatUA = function () {
 AuthingWxmp.prototype.getAuthorizationUrl = function () {
     const host = this.opts.host.oauth
     const userPoolId = this.opts.userPoolId
-    return `${host}/oauth/wechatmp/url/${userPoolId}`
+    return `${host}${host[host.length - 1] === "/" ? "" : "/"}oauth/wechatmp/url/${userPoolId}`
 }
 
 AuthingWxmp.prototype.getUserInfo = function (search) {
+    search = search || window.location.search
     const urlParams = new URLSearchParams(search);
     let code = urlParams.get('code')
         , message = urlParams.get('message')

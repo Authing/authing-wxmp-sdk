@@ -1,8 +1,8 @@
 {
-	"name": "authing-wxmp",
+	"name": "@authing/wxmp",
 	"version": "1.0.0",
 	"description": "Authing 微信网页授权 SDK",
-	"main": "./src/index.js",
+	"main": "dist/authing-wxmp-sdk.min.js",
 	"repository": "https://github.com/Authing/authing-wxmp",
 	"author": "廖长江 <changjiangthecoder@gmail.com>",
 	"license": "MIT",

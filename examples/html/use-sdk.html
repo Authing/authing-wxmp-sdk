@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>微信公众号网页授权 Demo</title>
+    <title>Authing 接入微信网页授权</title>
 </head>
 
 <style>
@@ -90,30 +90,29 @@
         </pre>
 
 </body>
+<script src="../../dist/authing-wxmp-sdk.min.js"></script>
 <script>
-    const ua = window.navigator.userAgent.toLowerCase()
-    const isWechatUA = ua.match(/MicroMessenger/i) == 'micromessenger';
-    if (!isWechatUA) {
+    const authingWx = new AuthingWxmp({
+        userPoolId: "5da7edab50396c1ad962378a"
+    })
+
+    if (!authingWx.checkWechatUA()) {
         alert("请在微信客户端中打开！")
     }
 
-    // display userInfo
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('code') == 200) {
+    const loginBtn = document.getElementById('btn-login');
+    loginBtn.onclick = function () {
+        window.location = authingWx.getAuthorizationUrl()
+    }
+
+    const { ok, userinfo, message } = authingWx.getUserInfo()
+    if (ok) {
         alert("成功获取用户信息！")
-        const userinfo = JSON.parse(urlParams.get('data'));
         const userinfoDiv = document.getElementById('userinfo');
         userinfoDiv.innerHTML = JSON.stringify(userinfo, null, 4)
+    } else if (message) {
+        alert(message)
     }
-
-    const loginBtn = document.getElementById('btn-login');
-    const userPoolId = "5da7edab50396c1ad962378a";
-    const host = "http://192.168.2.16:5556"
-    const authorizationUrl = `${host}/oauth/wechatmp/url/${userPoolId}`
-    loginBtn.onclick = function () {
-        window.location = authorizationUrl
-    }
-
 </script>
 
 </html>
