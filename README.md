@@ -63,9 +63,6 @@
 ```javascript
 <script src="https://cdn.jsdelivr.net/npm/@authing/wxmp/dist/authing-wxmp-sdk.min.js"></script>
 ```
-
-或者直接拷贝 `dist/authing-wxmp-sdk-browser.min.js` 的内容。
-
 接着就可以在浏览器环境下引用 `AuthingWxmp` 了。
 
 使用 npm / yarn：
@@ -85,9 +82,45 @@ yarn add @authing/wxmp
 import AuthingWxmp from "@authing/wxmp"
 ```
 
-## 初始化
+## 发起微信授权
 
 > 先从 [Authing 控制台](https://authing.cn/dashboard) 中[获取用户池 ID](https://learn.authing.cn/authing/others/faq#ru-he-huo-qu-client-id-he-client-secret)（userPoolId）
+
+```javascript
+const authingWx = new AuthingWxmp({
+  userPoolId: "YOUR_USERPOOLID"
+})
+
+// 跳转到微信授权页面
+window.location = authingWx.getAuthorizationUrl()
+```
+
+## 获取用户信息
+
+```javascript
+
+// 跳回业务回调链接之后获取用户信息
+// 若在回调页面 authingWx 未初始化，需要先初始化，具体初始化方式参考上文
+
+const { ok, userinfo, message } = authingWx.getUserInfo()
+if (ok) {
+    // do with userinfo
+    console.log(userinfo)
+} else if (message) {
+    // message 中包含了错误提示
+    alert(message)
+}
+```
+
+> 完整的 DEMO 可从 [examples](./examples/) 目录下获取。
+
+## 完整 API 列表
+
+- checkWechatUA
+- getAuthorizationUrl
+- getUserInfo
+
+### 构造函数
 
 参数：
 - options
@@ -98,20 +131,12 @@ import AuthingWxmp from "@authing/wxmp"
       oauth: "https://oauth.authing.cn/"
     }
     ```
-
-用以下方式初始化
-
+示例：
 ```javascript
 const authingWx = new AuthingWxmp({
-  userPoolId: "5da7edab50396c1ad962378a"
+  userPoolId: "YOUR_USERPOOLID"
 })
 ```
-
-## API
-
-- checkWechatUA
-- getAuthorizationUrl
-- getUserInfo
 
 ### checkWechatUA
 
@@ -154,8 +179,6 @@ if (ok) {
     alert(message)
 }
 ```
-
-> 完整的 DEMO 可从 [examples](./examples/) 目录下获取。
 
 ## 授权流程
 
