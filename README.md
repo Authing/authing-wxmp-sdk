@@ -15,7 +15,7 @@
 
 ### 🏠 [Authing 官方网站](https://authing.cn/)
 
-### ✨ [在线 Demo 点击体验（请在微信客户端中打开哦）](https://sample.authing.cn/wxmobile)
+### ✨ [在线 Demo 点击体验（请在微信客户端中打开哦）](https://sample.authing.cn)
 
 ## 开发准备
 
