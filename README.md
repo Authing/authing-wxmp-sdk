@@ -84,7 +84,7 @@ import AuthingWxmp from "@authing/wxmp"
 
 ## 发起微信授权
 
-> 先从 [Authing 控制台](https://authing.cn/dashboard) 中[获取用户池 ID](https://learn.authing.cn/authing/others/faq#ru-he-huo-qu-client-id-he-client-secret)（userPoolId）
+> 先从 [Authing 控制台](https://console.authing.cn) 中[获取用户池 ID](https://docs.authing.cn/others/faq.html#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96-userpool-id-%E5%92%8C-userpool-secret)（userPoolId）
 
 ```javascript
 const authingWx = new AuthingWxmp({
@@ -241,7 +241,7 @@ axios.get(SOME_SERVICE_URL, {
 })
 ```
 
-当终端用户携带此 Toekn 访问开发者的接口时，**开发者需要判断这个 Token 是否合法且处于登录状态**，Authing 为此提供了几个方法：[验证 JWT Token](https://learn.authing.cn/authing/advanced/authentication/verify-jwt-token)。Authing 返回的数据中包含了用户是否登录、登录情况下的用户 ID 等信息，之后开发者可以根据具体业务的需要对请求进行处理。
+当终端用户携带此 Toekn 访问开发者的接口时，**开发者需要判断这个 Token 是否合法且处于登录状态**，Authing 为此提供了几个方法：[验证 JWT Token](https://docs.authing.cn/user/token.html)。Authing 返回的数据中包含了用户是否登录、登录情况下的用户 ID 等信息，之后开发者可以根据具体业务的需要对请求进行处理。
 
 5. 总结一下以上流程
 - 开发者引导用户跳转到微信授权页面：https://oauth.authing.cn/oauth/wechatmp/url:userPoolId。
