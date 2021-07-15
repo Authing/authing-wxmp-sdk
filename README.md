@@ -66,8 +66,9 @@ import AuthingWxmp from "@authing/wxmp";
 
 ```javascript
 const authingWx = new AuthingWxmp({
-  userPoolId: "YOUR_USERPOOLID",
-});
+    appId: "YOUR_APP_ID",
+    host: "https://my-awesome-app.authing.cn"
+})
 
 // 跳转到微信授权页面
 window.location = authingWx.getAuthorizationUrl();
@@ -100,15 +101,14 @@ if (ok) {
 参数：
 
 - options
-  - userPoolId: 用户池 ID，必填。
-  - host: 指定 oauth 服务器地址，选填，默认为
-    `javascript { oauth: "https://oauth.authing.cn/" }`
-    示例：
+  - appId: Authing 应用 ID，必填。
+  - host: Authing 应用域名，必填。
 
 ```javascript
 const authingWx = new AuthingWxmp({
-  userPoolId: "YOUR_USERPOOLID",
-});
+    appId: "YOUR_APP_ID",
+    host: "https://my-awesome-app.authing.cn"
+})
 ```
 
 ### checkWechatUA
@@ -159,7 +159,7 @@ if (ok) {
 
 ## 授权流程
 
-1. 开发者引导用户跳转到 Authing 设置的授权链接：`https://oauth.authing.cn/oauth/wechatmp/url:userPoolId`，常见的方式有：
+1. 开发者引导用户跳转到 Authing 设置的授权链接
 
 - 当用户通过微信客户端网页打开时，让浏览器自动跳转。
 - 当用户通过微信客户端网页打开时，点击登录按钮之后跳转

@@ -96,7 +96,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@authing/wxmp/dist/authing-wxmp-sdk.min.js"></script>
 <script>
     const authingWx = new AuthingWxmp({
-        userPoolId: "5a9fa26cf8635a000185528c"
+        appId: "YOUR_APP_ID",
+        host: "https://my-awesome-app.authing.cn"
     })
 
     if (!authingWx.checkWechatUA()) {

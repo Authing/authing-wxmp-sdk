@@ -1,18 +1,11 @@
-const defaultOpts = {
-    host: {
-        oauth: "https://oauth.authing.cn/"
-    },
-    userPoolId: null
-}
-
 class AuthingWxmp {
     constructor(options) {
-        this.opts = Object.assign({}, defaultOpts, options)
-        if (!this.opts.userPoolId) {
-            throw new Error('userPoolId not provided');
+        this.opts = options
+        if (!this.opts.appId) {
+            throw new Error('appId is not provided');
         }
-        if (!this.opts.host || (this.opts.host && !this.opts.host.oauth)) {
-            throw new Error('oauth server not provided');
+        if (!this.opts.host) {
+            throw new Error('host is not provided');
         }
     }
 }
@@ -23,9 +16,9 @@ AuthingWxmp.prototype.checkWechatUA = function () {
 }
 
 AuthingWxmp.prototype.getAuthorizationUrl = function () {
-    const host = this.opts.host.oauth
-    const userPoolId = this.opts.userPoolId
-    return `${host}${host[host.length - 1] === "/" ? "" : "/"}oauth/wechatmp/url/${userPoolId}`
+    const host = this.opts.host
+    const appId = this.opts.appId
+    return `${host}/connections/social/wechat:webpage-authorization?app_id=${appId}`
 }
 
 AuthingWxmp.prototype.getUserInfo = function (search) {
