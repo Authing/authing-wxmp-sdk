@@ -12,7 +12,7 @@
 
 在微信公众平台后台的 设置 -> 公众号设置 -> 功能设置 页面设置 **网页授权域名**。
 
-域名填写：`core.authing.cn`。
+域名填写你 Authing 应用的域名：`my-awesome-app.authing.cn`。
 
 ![](./images/mpverify.jpg)
 
