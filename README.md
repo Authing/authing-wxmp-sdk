@@ -227,7 +227,7 @@ axios.get(SOME_SERVICE_URL, {
 
 1. 总结一下以上流程
 
-- 开发者引导用户跳转到微信授权页面：https://oauth.authing.cn/oauth/wechatmp/url:userPoolId。
+- 开发者引导用户跳转到微信授权页面。
 - 终端用户同意授权。
 - Authing 和微信根据 OAuth 协议完成用户信息交互。
 - Authing 将用户信息（包含 token）发送到开发者自定义的业务回调链接
