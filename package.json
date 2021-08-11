@@ -1,6 +1,6 @@
 {
 	"name": "@authing/wxmp",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Authing 微信网页授权 SDK",
 	"main": "dist/authing-wxmp-sdk.min.js",
 	"repository": "https://github.com/Authing/authing-wxmp",
