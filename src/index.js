@@ -17,8 +17,14 @@ AuthingWxmp.prototype.checkWechatUA = function () {
 
 AuthingWxmp.prototype.getAuthorizationUrl = function () {
     const host = this.opts.host
-    const appId = this.opts.appId
-    return `${host}/connections/social/wechat:webpage-authorization?app_id=${appId}`
+    const redirectUrl = this.opts.redirectUrl
+    const queryObject = {
+        app_id: this.opts.appId
+    }
+    if (redirectUrl) {
+        queryObject.redirect_url = redirectUrl
+    }
+    return `${host}/connections/social/wechat:webpage-authorization?${new URLSearchParams(queryObject).toString()}`
 }
 
 AuthingWxmp.prototype.getUserInfo = function (search) {

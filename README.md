@@ -67,7 +67,8 @@ import AuthingWxmp from "@authing/wxmp";
 ```javascript
 const authingWx = new AuthingWxmp({
     appId: "YOUR_APP_ID",
-    host: "https://my-awesome-app.authing.cn"
+    host: "https://my-awesome-app.authing.cn",
+    redirectUrl: 'http://localhost:8080'
 })
 
 // 跳转到微信授权页面
@@ -103,11 +104,13 @@ if (ok) {
 - options
   - appId: Authing 应用 ID，必填。
   - host: Authing 应用域名，必填。
+  - redirectUrl: 指定的回调链接，选填，默认使用控制台配置的回调地址。配置的回调地址支持使用通配符，例如你在 Authing 控制台中配置的回调地址为 `https://*.example.com/*`，这里可以指定回调地址为 `https://forum.example.com/t/topic/1234`。
 
 ```javascript
 const authingWx = new AuthingWxmp({
     appId: "YOUR_APP_ID",
-    host: "https://my-awesome-app.authing.cn"
+    host: "https://my-awesome-app.authing.cn",
+    redirectUrl: "https://forum.example.com/t/topic/1234"
 })
 ```
 
