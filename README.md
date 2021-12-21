@@ -5,32 +5,36 @@
 ## 开发准备
 
 - 微信公众号：前往[微信公众平台](https://mp.weixin.qq.com/) 注册
-- 必须为服务号
-- 必须通过微信认证
+- **必须为服务号**
+- **必须通过微信认证**
 
 在微信公众平台后台的 开发 -> 基本配置 页面获取开发者 ID (AppID) 和开发者密码(AppSecret)。
 
 在微信公众平台后台的 设置 -> 公众号设置 -> 功能设置 页面设置 **网页授权域名**。
 
-域名填写你 Authing 应用的域名：`my-awesome-app.authing.cn`。
+域名填写 Authing 的统一回调域名：`core.authing.cn`。
 
 ![](./images/mpverify.jpg)
 
 出于安全验证考虑，微信服务器需要和 Authing 服务器做一次请求验证，开发者需要下载 txt 文件，并记录 **文件名** 和 **文本内容**。
 
-最后在 Authing 控制台 **连接身份源** -> **社会化登录** 开启**微信网页授权登录**：
+最后在 Authing 控制台 **连接身份源** -> **社会化登录** 创建一个**微信社会化身份源**：
 
 ![](./images/wechatmp2.png)
 
-填写弹出的表单：
+![](./images/wechatmp3.png)
 
-![](./images/wechat-form.png)
+选择**登录方式**为**微信网页授权登录**，并填入以下信息：
 
-- AppID：微信开发者 ID
-- AppSecret：微信开发者密码
-- Redirect：你的业务回调链接
+![](./images/wechatmp4.png)
+
+- 唯一标识: 这是此连接的唯一标识，设置之后不能修改。
+- 显示名称: Authing 登录表单将会显示一个“{Display Name} 登录”的按钮。
+- AppID：微信提供的 AppID
+- AppSecret：微信提供的 AppSecret
 - Txt Filename：前面记录的 txt 文件名
 - Txt Content：前面记录的 txt 文本内容
+- Redirect：你的业务回调链接，必填。配置的回调地址支持使用通配符，例如你配置的回调地址为 `https://*.example.com/*`，下面的回调地址也是允许的： `https://forum.example.com/t/topic/1234`。
 
 ## 安装
 
@@ -60,12 +64,32 @@ yarn add @authing/wxmp
 import AuthingWxmp from "@authing/wxmp";
 ```
 
-## 发起微信授权
+## 初始化
 
-> 先从 [Authing 控制台](https://console.authing.cn) 中[获取用户池 ID](https://docs.authing.cn/v2/guides/faqs/get-userpool-id-and-secret.html)。
+初始化一共需要四个参数：
+
+- `identifier`: 此社会化身份源的唯一标志，你在 Authing 控制台创建微信身份源的时候填写的；
+- `appId`: Authing 应用 ID；
+- `host`: Authing 应用域名，如 `https://my-awesome-app.authing.cn`；
+- `redirectUrl`: 指定的回调链接，选填，默认使用控制台配置的回调地址。配置的回调地址支持使用通配符，例如你在 Authing 控制台中配置的回调地址为 `https://*.example.com/*`，这里可以指定回调地址为 `https://forum.example.com/t/topic/1234`。
+
+
+示例：
 
 ```javascript
 const authingWx = new AuthingWxmp({
+    identifier: "wechat-mp-service",
+    appId: "YOUR_APP_ID",
+    host: "https://my-awesome-app.authing.cn",
+    redirectUrl: 'http://localhost:8080'
+})
+```
+
+## 发起微信授权
+
+```javascript
+const authingWx = new AuthingWxmp({
+    identifier: "",
     appId: "YOUR_APP_ID",
     host: "https://my-awesome-app.authing.cn",
     redirectUrl: 'http://localhost:8080'
@@ -96,23 +120,6 @@ if (ok) {
 - checkWechatUA
 - getAuthorizationUrl
 - getUserInfo
-
-### 构造函数
-
-参数：
-
-- options
-  - appId: Authing 应用 ID，必填。
-  - host: Authing 应用域名，必填。
-  - redirectUrl: 指定的回调链接，选填，默认使用控制台配置的回调地址。配置的回调地址支持使用通配符，例如你在 Authing 控制台中配置的回调地址为 `https://*.example.com/*`，这里可以指定回调地址为 `https://forum.example.com/t/topic/1234`。
-
-```javascript
-const authingWx = new AuthingWxmp({
-    appId: "YOUR_APP_ID",
-    host: "https://my-awesome-app.authing.cn",
-    redirectUrl: "https://forum.example.com/t/topic/1234"
-})
-```
 
 ### checkWechatUA
 
@@ -179,32 +186,6 @@ if (ok) {
   - 其他：获取用户信息失败
 - `message`: 错误提示信息（获取用户信息失败时候有）
 - `data`: 用户信息（获取用户信息成功时候有）
-
-`data` 示例：
-
-```
-{
-    "_id": "5dc10bcb6f94c178c6ffffb9",
-    "email": null,
-    "emailVerified": false,
-    "unionid": "oiPbDuG4S7msrKHPKDc8MECSe8jM",
-    "openid": "oiPbDuG4S7msrKHPKDc8MECSe8jM",
-    "oauth": "{\"openid\":\"oiPbDuG4S7msrKHPKDc8MECSe8jM\",\"nickname\":\"廖长江\",\"sex\":1,\"language\":\"zh_CN\",\"city\":\"海淀\",\"province\":\"北京\",\"country\":\"中国\",\"headimgurl\":\"http://thirdwx.qlogo.cn/mmopen/vi_32/GkxYERPDdTMk7bOk3BgBmEEYul8oMcOoLgNHLoibZn5ibe4EulWBp1xo6uN4az59eoSBYBW0QmXB9TrsJEM0EoPw/132\",\"privilege\":[]}",
-    "registerMethod": "oauth:wxmp",
-    "username": "廖长江",
-    "nickname": "廖长江",
-    "company": "",
-    "photo": "https://usercontents.authing.cn/avatar-5dc10bcb6f94c178c6ffffb9-1572932555337",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVuaW9uaWQiOiJvaVBiRHVHNFM3bXNyS0hQS0RjOE1FQ1NlOGpNIiwiaWQiOiI1ZGMxMGJjYjZmOTRjMTc4YzZmZmZmYjkiLCJjbGllbnRJZCI6IjVkYTdlZGFiNTAzOTZjMWFkOTYyMzc4YSJ9LCJpYXQiOjE1NzI5NTY0MjUsImV4cCI6MTU3NDI1MjQyNX0.OTgl72WZS8So3R5DbWCJ7I_Bd0LaZa4S0TAVMg9qaYQ",
-    "tokenExpiredAt": "11/20/2019, 8:20:25 PM",
-    "loginsCount": 43,
-    "lastLogin": "11/5/2019, 8:20:25 PM",
-    "lastIP": "127.0.0.1",
-    "signedUp": "11/5/2019, 1:42:35 PM",
-    "blocked": false,
-    "isDeleted": false
-}
-```
 
 4. 开发者使用 token 维持登录状态
 
