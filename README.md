@@ -41,7 +41,7 @@
 使用 CDN：
 
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/@authing/wxmp/dist/authing-wxmp-sdk.min.js"></script>
+<script src="https://cdn.authing.co/packages/authing-wxmp-sdk/1.3.1/authing-wxmp-sdk.min.js"></script>
 ```
 
 接着就可以在浏览器环境下引用 `AuthingWxmp` 了。
@@ -218,3 +218,14 @@ axios.get(SOME_SERVICE_URL, {
 - 终端用户后续的请求将 token 携带上。
 - 开发者在后端调用 [Authing 提供的方法](https://docs.authing.cn/v2/guides/faqs/how-to-validate-user-token.html) 检验 token 的合法性以及登录状态。
 - 根据 Authing 返回的登录状态和开发者自己的业务逻辑，对请求进行相应处理。
+
+## 参与贡献
+- Fork it
+- Create your feature branch (git checkout -b my-new-feature)
+- Commit your changes (git commit -am 'Add some feature')
+- Push to the branch (git push origin my-new-feature)
+- Create new Pull Request
+
+## 获取帮助
+
+Join us on forum: [#authing-chat](https://forum.authing.cn/)
