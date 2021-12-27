@@ -1,6 +1,16 @@
 # 微信网页授权登录 SDK
 
-> Authing 微信网页授权 SDK，五分钟接入微信网页授权登录。
+<div align=center><img src="https://files.authing.co/authing-console/authing-logo-new-20210924.svg"></div>
+<div align=center>Authing 微信网页授权 SDK，五分钟接入微信网页授权登录。</div>
+<br/>
+<div align="center">
+  <a href="https://badge.fury.io/js/@authing%2Fwxmp"><img src="https://badge.fury.io/js/@authing%2Fwxmp.svg" alt="npm version" height="18"></a>
+  <a href="https://npmcharts.com/compare/@authing/wxmp" target="_blank"><img src="https://img.shields.io/npm/dm/@authing/wxmp" alt="download"></a>
+  <a href="https://standardjs.com" target="_blank"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="standardjs"></a>
+  <a href="https://github.com/Authing/wxmp" target="_blank"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+  <a href="javascript:;" target="_blank"><img src="https://img.shields.io/badge/node-%3E=12-green.svg" alt="Node"></a>
+</div>
+<br/>
 
 ## 开发准备
 
