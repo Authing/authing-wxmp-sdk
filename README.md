@@ -1,6 +1,6 @@
 # 微信网页授权登录 SDK
 
-<div align=center><img src="https://files.authing.co/authing-console/authing-logo-new-20210924.svg"></div>
+<div align=center><img width="300" src="https://files.authing.co/authing-console/authing-logo-new-20210924.svg"></div>
 <div align=center>Authing 微信网页授权 SDK，五分钟接入微信网页授权登录。</div>
 <br/>
 <div align="center">
