@@ -24,6 +24,7 @@ jobs:
 
     env: 
       PUBLISH_OPTS: ${{ github.ref_name == 'master' && '--verbose' || '--verbose --tag=alpha' }}
+      VERESION: ${{ github.event.inputs.version }}
 
     steps:
 
@@ -55,7 +56,6 @@ jobs:
           npm publish $PUBLISH_OPTS
           echo "记得同步 taobao 源哦： https://npm.taobao.org/sync/authing-wxapp-sdk  🚀"
         env:
-          VERESION: ${{ github.event.inputs.version }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     
       - name: release
@@ -69,5 +69,3 @@ jobs:
               ref: "refs/tags/${{ env.VERESION }}",
               sha: context.sha
             })
-        env:
-          VERESION: ${{ github.event.inputs.version }}
