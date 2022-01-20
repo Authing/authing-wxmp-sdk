@@ -1,4 +1,4 @@
-name: Authing wxmp SDK Github CI
+name: Authing wxmp SDK publish CI
 
 on:
   workflow_dispatch:
