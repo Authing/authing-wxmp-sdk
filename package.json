@@ -1,23 +1,28 @@
 {
-	"name": "@authing/wxmp",
-	"version": "1.3.2",
-	"description": "Authing 微信网页授权 SDK",
-	"main": "dist/authing-wxmp-sdk.min.js",
-	"repository": "https://github.com/Authing/authing-wxmp",
-	"author": "廖长江 <changjiangthecoder@gmail.com>",
-	"license": "MIT",
-	"scripts": {
-		"lint": "eslint --fix .",
-		"build": "webpack --config webpack.config.js"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.7.0",
-		"@babel/polyfill": "^7.7.0",
-		"@babel/preset-env": "^7.7.1",
-		"@babel/register": "^7.7.0",
-		"babel-loader": "^8.0.6",
-		"eslint": "^6.6.0",
-		"webpack": "^4.41.2",
-		"webpack-cli": "^3.3.10"
-	}
+  "name": "@authing/wxmp",
+  "version": "1.3.3-alpha.2",
+  "description": "Authing 微信网页授权 SDK",
+  "main": "dist/authing-wxmp-sdk.min.js",
+  "repository": "https://github.com/Authing/authing-wxmp",
+  "author": "廖长江 <changjiangthecoder@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --fix .",
+    "build": "webpack --config webpack.config.js",
+    "release": "node scripts/release.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.0",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.6.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "chalk": "^4.1.0",
+    "conventional-changelog-cli": "^2.0.31",
+    "execa": "^4.0.2",
+    "node-console-colors": "^1.1.4"
+  }
 }
