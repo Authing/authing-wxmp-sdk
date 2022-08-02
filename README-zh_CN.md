@@ -1,6 +1,12 @@
-# 微信网页授权登录 SDK
+<div align=center><img width="250" src="https://files.authing.co/authing-console/authing-logo-new-20210924.svg"></div>
+<br />
 
-<div align=center><img width="300" src="https://files.authing.co/authing-console/authing-logo-new-20210924.svg"></div>
+<div align=center>
+  <span>简体中文</span> | 
+  <a href="https://github.com/Authing/authing-wxmp-sdk/blob/master/README.md">English</a>
+</div>
+
+<br />
 <div align=center>Authing 微信网页授权 SDK，五分钟接入微信网页授权登录。</div>
 <br/>
 <div align="center">
@@ -229,13 +235,11 @@ axios.get(SOME_SERVICE_URL, {
 - 开发者在后端调用 [Authing 提供的方法](https://docs.authing.cn/v2/guides/faqs/how-to-validate-user-token.html) 检验 token 的合法性以及登录状态。
 - 根据 Authing 返回的登录状态和开发者自己的业务逻辑，对请求进行相应处理。
 
-## 参与贡献
-- Fork it
-- Create your feature branch (git checkout -b my-new-feature)
-- Commit your changes (git commit -am 'Add some feature')
-- Push to the branch (git push origin my-new-feature)
-- Create new Pull Request
+## 开源共建
 
-## 获取帮助
+- Fork 此仓库
+- 创建自己的 git 分支 (git checkout -b my-new-feature)
+- 提交你的修改 (git commit -am 'Add some feature')
+- 将修改内容推送到远程分支 (git push -u origin my-new-feature)
+- 创建一个 Pull Request
 
-Join us on forum: [#authing-chat](https://forum.authing.cn/)
