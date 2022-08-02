@@ -243,3 +243,8 @@ axios.get(SOME_SERVICE_URL, {
 - 将修改内容推送到远程分支 (git push -u origin my-new-feature)
 - 创建一个 Pull Request
 
+## 开源许可
+
+[License](https://github.com/Authing/authing-wxmp-sdk/blob/master/LICENSE)
+
+Copyright (c) 2019 Authing
